@@ -92,3 +92,7 @@ export const getDocumentaries = () => async dispatch => {
     }
 }
 
+export const setMovieDetail = (movie) => dispatch => {
+    dispatch({type: Types.SET_MOVIE_DETAIL, payload:movie})
+}
+

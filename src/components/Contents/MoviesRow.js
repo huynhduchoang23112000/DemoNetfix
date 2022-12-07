@@ -3,19 +3,9 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useEffect, useRef, useState } from "react";
 import { SmoothHorizontalScrolling } from "../../utils";
 import { useViewport } from "../hooks";
+import { useDispatch } from "react-redux";
+import { setMovieDetail } from "../store/actions";
 
-// const movies = [
-//   "https://ss-images.saostar.vn/wp700/pc/1606897461583/BoGia_Teaser1.jpg",
-//   "https://edugate.vn/wp-content/uploads/2021/09/huong-dan-tao-poster-phim-cuc-chat-bang-photoshop-235-123.jpg",
-//   "https://i.pinimg.com/736x/cb/63/a7/cb63a711c39e8d4f5696a8d387f46b49.jpg",
-//   "https://arena.fpt.edu.vn/wp-content/uploads/2021/04/5-yeu-to-tao-nen-mot-poster-phim-an-tuong.jpeg",
-//   "https://gaumedia.vn/wp-content/uploads/2021/06/5-buoc-thiet-ke-poster-phim-6.png",
-//   "http://d1j8r0kxyu9tj8.cloudfront.net/files/1582782582h5DhM7zcUDHc3kY.jpg",
-//   "https://creativereview.imgix.net/content/uploads/2019/12/joker_full.jpg?auto=compress,format&q=60&w=1012&h=1500",
-//   "https://upload.wikimedia.org/wikipedia/vi/e/ec/Monster_Hunter_Film_Poster.jpg",
-//   "https://photo-cms-anninhthudo.zadn.vn/w660/Uploaded/2022/ipjoohb/2022_09_07/fd6384d7-7558-49b5-b97e-8654863ff256-968.jpeg",
-//   "https://www.adobe.com/express/create/poster/media_14f888136eecf9b6e4d83386789e660f15349f96c.jpeg?width=400&format=jpeg&optimize=medium",
-// ];
 
 function MoviesRow(props) {
   const {movies, title, isNetflix} = props;
@@ -26,6 +16,12 @@ function MoviesRow(props) {
   const [dragMove, setDragMove] = useState(0);
   const [isDrag, setIsDrag] = useState(false);
   const [windowWidth] = useViewport();
+  
+ const dispatch = useDispatch();
+
+  const handleSetMovie = (movie) => {
+    dispatch(setMovieDetail( movie))
+  }
 
 
 
@@ -104,6 +100,7 @@ function MoviesRow(props) {
               className="movieItem"
               ref={movieRef}
               draggable='false'
+              onClick={() => handleSetMovie(movie)}
             >
               <img src={imageUrl} alt="" draggable='false' />
               <div className="movieName">{movie.title || movie.name}</div>
