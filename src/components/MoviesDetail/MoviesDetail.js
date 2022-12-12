@@ -5,7 +5,7 @@ import styled, { keyframes } from "styled-components";
 import { setMovieDetail } from '../store/actions';
 
 // const showModal = true;
-
+// nhánh main
 function MoviesDetail(props) {
     const {movie, showModal} = props;
     const dispatch = useDispatch();
