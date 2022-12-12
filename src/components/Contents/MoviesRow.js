@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { SmoothHorizontalScrolling } from "../../utils";
 import { useViewport } from "../hooks";
 import { useDispatch } from "react-redux";
-import { setMovieDetail } from "../store/actions";
+
 
 
 function MoviesRow(props) {
@@ -16,12 +16,6 @@ function MoviesRow(props) {
   const [dragMove, setDragMove] = useState(0);
   const [isDrag, setIsDrag] = useState(false);
   const [windowWidth] = useViewport();
-  
- const dispatch = useDispatch();
-
-  const handleSetMovie = (movie) => {
-    dispatch(setMovieDetail( movie))
-  }
 
 
 
@@ -100,7 +94,6 @@ function MoviesRow(props) {
               className="movieItem"
               ref={movieRef}
               draggable='false'
-              onClick={() => handleSetMovie(movie)}
             >
               <img src={imageUrl} alt="" draggable='false' />
               <div className="movieName">{movie.title || movie.name}</div>
